@@ -15,5 +15,7 @@ branches:
   - develop
 
 install:
-  - npm build
-  - npm run test
+  - npm install
+
+script:
+- ng run test
