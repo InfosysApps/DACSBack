@@ -10,8 +10,6 @@ const app = express();
 
 // Allow Cross-Origin requests
 app.use(cors());
-
-app.use('/api', routes);
 app.use(bodyParser.json({'Content-Type' : 'application/json'}));
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
@@ -29,10 +27,13 @@ app.use(xss());
 // Prevent parameter pollution
 app.use(hpp());
 
+app.use('/api', routes);
+
 // handle undefined Routes
 app.use('*', (req, res, next) => {
     const err = new AppError(404, 'Not Found', 'Undefined Route');
     next(err, req, res, next);
 });
+
 
 module.exports = app;
