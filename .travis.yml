@@ -15,4 +15,4 @@ branches:
   - develop
 
 install:
-  - npm install
+  - npm build
