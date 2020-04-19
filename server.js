@@ -18,7 +18,6 @@ const Port = process.env.PORT;
 app.listen(Port, () => {
     console.log("Application is running on port "+Port);
     //console.log('jwt  '+jwt.createToken('amit'));
-    //console.log('jwt valid  '+jwt.verify('GKKXd'));
 });
 
 process.on('unhandledRejection', err => {

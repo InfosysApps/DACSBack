@@ -20,5 +20,25 @@ const verify = token => {
       }
 };
 
+exports.Validate = async (req, res, next) => {
+    let bearerHeader = req.headers['authorization'];
+    
+    if(typeof bearerHeader === 'undefined')
+        return res.status(401).send();   
+
+    let bearer = bearerHeader.split(' ');
+
+    if(bearer[0] != 'Bearer')
+        return res.status(401).send();
+
+    if(bearer[1] == null || bearer[1].trim() == '')
+        return res.status(401).send();
+
+    if(typeof verify(bearer[1]) === 'undefined')
+        return res.status(401).send();
+
+    next();
+};
+
 module.exports.createToken = createToken;
 module.exports.verify = verify;
