@@ -31,14 +31,15 @@ exports.FindOne = async (Collection, query) => {
 
 
 //Working
-exports.FindSingle = async (Collection, query) =>{
+exports.FindSingle = async (Collection, query, projection) =>{
     let db = await MongoClient.connect(process.env.DATABASE_SERVER, {
         useUnifiedTopology: true,
         useNewUrlParser: true,
     });
     
-    let thing = await db.db(DB).collection(Collection).findOne(query);
+    let thing = await db.db(DB).collection(Collection).findOne(query, projection);
     await db.close();
+    //console.log(thing);
     return thing;
 };
 

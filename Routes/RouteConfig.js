@@ -11,6 +11,7 @@ router.post('/login/verify',jwt.Validate, loginController.Verify);
 
 
 //Operator Apis
+router.get('/operator/info/:id', jwt.Validate, operatorController.Get);
 router.post('/operator/save', jwt.Validate, operatorController.Save);
 
 

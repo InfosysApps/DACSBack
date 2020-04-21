@@ -1,11 +1,12 @@
 const mongoDB = require('../mongodb/mongodb');
-const mongoose = require('../mongodb/mongoose');
+const Operator = "Operator";
 var Promise = require('promise');
  
 exports.Verify = (username, password) => {
 
     var user = { User_Name : username, Password: password};
-    return mongoDB.FindSingle('Operator', user).then(function(result){
+    var projection = { projection : {'Password' : 0}};
+    return mongoDB.FindSingle(Operator, user, projection).then(function(result){
         return result;
     });
 };

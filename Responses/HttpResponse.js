@@ -1,10 +1,24 @@
-let http = {
-    httpstatus : "",
-    sucess : false,
-    responseobj : {},
-    message : "",
-    additionalmessage : "Additional note found here."
-};
+class HttpResponse {
+
+    constructor(){    
+    }
+
+    PrepareHttp()
+    {
+        let http = {
+            httpstatus : "",
+            sucess : false,
+            responseobj : {},
+            message : "",
+            additionalmessage : "Additional note found here."
+        };
+
+        return http;
+    }
+}
 
 
-module.exports.response = http;
+
+
+
+module.exports = HttpResponse;
