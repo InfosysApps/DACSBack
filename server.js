@@ -1,6 +1,9 @@
 const dotenv = require('dotenv');
 const app = require('./app');
 const jwt = require('./jsonwebtoken');
+const assert = require('assert');
+const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 
 //Load all configurations settings.
 dotenv.config({
@@ -17,8 +20,18 @@ process.on('uncaughtException', err => {
 const Port = process.env.PORT;
 app.listen(Port, () => {
     console.log("Application is running on port "+Port);
-    //console.log('jwt  '+jwt.createToken('amit'));
+    console.log('jwt  '+jwt.createToken('amit'));
 });
+
+// Use connect method to connect to the server
+MongoClient.connect(process.env.DATABASE_SERVER, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+})
+.then(() => console.log('DB Connected!'))
+.catch(err => { console.log("DB Connection Error: ${err.message}");
+});
+MongoClient.Promise = global.Promise;
 
 process.on('unhandledRejection', err => {
     console.log('UNHANDLED REJECTION!!!  shutting down ...');

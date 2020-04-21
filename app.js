@@ -35,5 +35,4 @@ app.use('*', (req, res, next) => {
     next(err, req, res, next);
 });
 
-
 module.exports = app;

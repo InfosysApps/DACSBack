@@ -1,11 +1,12 @@
 const LoginOps = require('../Business/LoginOperations');
-const jwt = require('../jsonwebtoken');
 
-exports.Verify = async (req, res, next) => {
+exports.Verify = (req, res, next) => {
     //Login Verify code here.
     let { username, password } = req.body;
-
-    let logResponse = LoginOps.Verify(username, password);
-
-    return res.status(200).send(logResponse); 
+    LoginOps.Verify(username.toLowerCase(), password).then(function(response){
+        if(response)
+            return res.status(200).send(response); 
+        else
+        return res.status(500).send(response); 
+    });
 };
