@@ -1,31 +1,23 @@
-const OperatorMod = require('../Models/OperatorModel');
+const AccountMod = require('../Models/AccountModel');
 const HttpResponse = require('../Responses/HttpResponse');
 
 
-exports.Save = async (Id, User_Name, Password) => {
-    console.log("operations save");
-    OperatorMod.Save(Id, User_Name, Password);
-};
-
-exports.Get = (operatorId) => {
+exports.Get = (accountId) => {
     let _http = new HttpResponse().PrepareHttp();
     try
     {  
-        return OperatorMod.Get(operatorId).then(function(result){
+        return AccountMod.Get(accountId).then(function(result){
             if(result)
             {
                 //validate true
-                if(result.Gender == "Male")
-                    _http.message = "User found. Here are his details.";
-                else
-                    _http.message = "User found. Here are her details.";
+                _http.message = "Account found. Here are the details.";
                 _http.responseobj.getstatus = "true";
                 _http.responseobj.details = result;
             }
             else
             {
                 //handle all types of Login failed validations here.
-                _http.message = "User Not Found !! Please try with correct Operator Id.";
+                _http.message = "Account Not Found !! Please try with correct Acccount Id.";
                 _http.responseobj.getstatus = "false";
             }
         
@@ -39,7 +31,7 @@ exports.Get = (operatorId) => {
     catch(error)
     {
         _http.httpstatus = 500;
-        _http.message = "Operator operation failed. Internal Server error.";
+        _http.message = "Account operation failed. Internal Server error.";
         _http.additionalmessage = error.message;
         _http.sucess = false;
 
