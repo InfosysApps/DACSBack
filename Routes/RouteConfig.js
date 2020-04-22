@@ -6,6 +6,7 @@ const OperatorController = require('../Controllers/OperatorController');
 const AccountController = require('../Controllers/AccountController');
 const CustomerController = require('../Controllers/CustomerController');
 const ActionController = require('../Controllers/ActionController');
+const ReasonController = require('../Controllers/ReasonController');
 
 
 
@@ -28,6 +29,10 @@ router.get('/customer/accounts/:id', jwt.Validate, CustomerController.GetCustome
 
 //Action Apis
 router.get('/action/all/', jwt.Validate, ActionController.Get);
+
+
+//Reason Apis
+router.get('/reason/all/', jwt.Validate, ReasonController.Get);
 
 
 
