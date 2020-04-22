@@ -29,6 +29,18 @@ exports.FindOne = async (Collection, query, projection) =>{
     return thing;
 };
 
+exports.Find = async (Collection, query, projection) =>{
+    let db = await MongoClient.connect(process.env.DATABASE_SERVER, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+    });
+    
+    let thing = await db.db(DB).collection(Collection).find(query, projection).toArray();
+    await db.close();
+    //console.log(thing);
+    return thing;
+};
+
 exports.CustomerAccountsJoin =  async (Collection, query, projection) => {
     let db = await MongoClient.connect(process.env.DATABASE_SERVER, {
         useUnifiedTopology: true,
