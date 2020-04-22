@@ -9,7 +9,8 @@ const ActionController = require('../Controllers/ActionController');
 const ReasonController = require('../Controllers/ReasonController');
 const RoleController = require('../Controllers/RoleController');
 const CheckListController = require('../Controllers/CheckListController');
-
+const TransactionsController = require('../Controllers/TransactionsController');
+const AssignmentsController = require('../Controllers/AssignmentsController');
 
 
 //Login Apis
@@ -39,6 +40,13 @@ router.get('/role/all/', jwt.Validate, RoleController.Get);
 
 //Role Apis
 router.get('/checklist/all/', jwt.Validate, CheckListController.Get);
+
+
+//Transactions Apis
+router.get('/transactions/account/:id', jwt.Validate, TransactionsController.Get);
+
+//Transactions Apis
+router.get('/assignments/operator/:id', jwt.Validate, AssignmentsController.Get);
 
 
 
