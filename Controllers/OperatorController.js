@@ -18,3 +18,12 @@ exports.Save = (req, res, next) => {
 
     return res.status(200).send("Record inserted successfully."); 
 };
+
+exports.GetAll = (req, res, next) => {
+    OperatorOps.GetAll().then(function(response){
+        if(response)
+            return res.status(200).send(response); 
+        else
+        return res.status(500).send(response); 
+    });
+};

@@ -17,3 +17,11 @@ exports.Get = (operatorId) => {
     });
 };
 
+exports.GetAll = () => {
+    var query = { };
+    var projection = { projection : {'Password' : 0}};
+    return mongoDB.Find(Operator, query, projection).then(function(result){
+        return result;
+    });
+};
+
