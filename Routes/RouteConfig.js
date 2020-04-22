@@ -22,6 +22,7 @@ router.get('/account/info/:id', jwt.Validate, AccountController.Get);
 
 //Customer Apis
 router.get('/customer/info/:id', jwt.Validate, CustomerController.Get);
+router.get('/customer/accounts/:id', jwt.Validate, CustomerController.GetCustomerAccounts);
 
 
 

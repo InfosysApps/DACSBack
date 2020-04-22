@@ -12,7 +12,7 @@ exports.Save = async (Id, User_Name, Password) => {
 exports.Get = (operatorId) => {
     var query = { Id : operatorId};
     var projection = { projection : {'Password' : 0}};
-    return mongoDB.FindSingle(Operator, query, projection).then(function(result){
+    return mongoDB.FindOne(Operator, query, projection).then(function(result){
         return result;
     });
 };
