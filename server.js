@@ -30,7 +30,7 @@ MongoClient.connect(process.env.DATABASE_SERVER, {
 .then(() => console.log('DB Connected!'))
 .catch(err => { console.log("DB Connection Error: ${err.message}");
 });
-//MongoClient.Promise = global.Promise;
+MongoClient.Promise = global.Promise;
 
 process.on('unhandledRejection', err => {
     console.log('UNHANDLED REJECTION!!!  shutting down ...');
