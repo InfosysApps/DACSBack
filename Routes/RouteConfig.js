@@ -14,7 +14,7 @@ const AssignmentsController = require('../Controllers/AssignmentsController');
 
 
 //Login Apis
-router.post('/login/verify',jwt.Validate, LoginController.Verify);
+router.post('/login/verify', LoginController.Verify);
 
 
 //Operator Apis
