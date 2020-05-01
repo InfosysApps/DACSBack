@@ -64,6 +64,24 @@ exports.CustomerAccountsJoin =  async (Collection, query, projection) => {
     return thing;
 };
 
+
+exports.GetClosureAccountList =  async (Collection, query, projection) => {
+    let db = await MongoClient.connect(process.env.DATABASE_SERVER, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+    });
+    
+    let thing = await db.db(DB).collection('DormantAccounts').aggregate(
+    [
+            { $match: { Status:"Closed"} }
+        ]).toArray();
+
+    await db.close();
+    //console.log(thing);
+    return thing;
+};
+
+
 /*
 exports.UpdateOne =  async (Collection, query, newValues) => {
     MongoClient.connect(process.env.DATABASE_SERVER, {

@@ -48,7 +48,8 @@ router.get('/transactions/account/:id', jwt.Validate, TransactionsController.Get
 //Transactions Apis
 router.get('/assignments/operator/:id', jwt.Validate, AssignmentsController.Get);
 
-
+//Closure Account list Apis
+router.get('/closure/account/list', jwt.Validate, CustomerController.GetClosureAccountList);
 
 //End call
 module.exports = router;

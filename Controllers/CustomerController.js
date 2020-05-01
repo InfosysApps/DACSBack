@@ -23,3 +23,12 @@ exports.GetCustomerAccounts = async (req, res, next) => {
         return res.status(500).send(response); 
     });
 };
+
+exports.GetClosureAccountList = (req, res, next) => {
+    CustomerOps.GetClosureAccountList().then(function(response){
+        if(response)
+            return res.status(200).send(response); 
+        else
+        return res.status(500).send(response); 
+    });
+};

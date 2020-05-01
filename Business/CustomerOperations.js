@@ -76,3 +76,41 @@ exports.GetCustomerAccounts = (customerId) => {
         return _http;
     }
 };
+
+
+exports.GetClosureAccountList = () => {
+    let _http = new HttpResponse().PrepareHttp();
+    try
+    {  
+        return CustomerMod.GetClosureAccountList().then(function(result){
+            if(result)
+            {
+                //validate true
+                _http.message = "Closure Account List found. Here are the details.";
+                _http.responseobj.getstatus = "true";
+                _http.responseobj.operators = result;
+            }
+            else
+            {
+                //handle all types of Login failed validations here.
+                _http.message = "Closure Account List Not Found !! Please try again.";
+                _http.responseobj.getstatus = "false";
+            }
+        
+            _http.httpstatus = 200;
+            _http.additionalmessage = "Additional note found here.";
+            _http.sucess = "true";
+
+            return _http;
+        });
+    }
+    catch(error)
+    {
+        _http.httpstatus = 500;
+        _http.message = "Operator operation failed. Internal Server error.";
+        _http.additionalmessage = error.message;
+        _http.sucess = false;
+
+        return _http;
+    }
+};
